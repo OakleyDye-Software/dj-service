@@ -10,7 +10,11 @@
 
   <ItemGroup>
     <Folder Include="AppLogic/" />
+    <Folder Include="AppLogic/Implementations/" />
+    <Folder Include="AppLogic/Interfaces/" />
     <Folder Include="External/" />
+    <Folder Include="External/Implementations/" />
+    <Folder Include="External/Interfaces/" />
     <Folder Include="Models/" />
   </ItemGroup>
 
