@@ -26,6 +26,8 @@ builder.Services.AddSingleton<IDbAccess, PostgresAccess>();
 
 builder.Services.AddTransient<IServiceAccess, ServiceAccess>();
 builder.Services.AddTransient<IServiceLogic, ServiceLogic>();
+builder.Services.AddTransient<IAboutAccess, AboutAccess>();
+builder.Services.AddTransient<IAboutLogic, AboutLogic>();
 
 var app = builder.Build();
 app.MapControllers();
