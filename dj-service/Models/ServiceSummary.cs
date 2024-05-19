@@ -7,11 +7,11 @@ public class ServiceSummary
     [Column("id")]
     public int Id { get; set; }
     [Column("service_name")]
-    public string Name { get; set; }
+    public string Name { get; set; } = string.Empty;
     [Column("service_description")]
-    public string Description { get; set; }
+    public string Description { get; set; } = string.Empty;
     [Column("service_image_path")]
-    public string ImageUrl { get; set; }
+    public string ImageUrl { get; set; } = string.Empty;
     [Column("page_id")]
     public int PageId { get; set; }
 }
