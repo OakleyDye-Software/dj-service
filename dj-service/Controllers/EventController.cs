@@ -8,23 +8,23 @@ public class EventController(IEventLogic eventLogic, ILogger<EventController> lo
 {
     private readonly IEventLogic _eventLogic = eventLogic;
 
-    [HttpGet]
+    [HttpGet("Type")]
     public async Task<IActionResult> GetEventTypesAsync() =>
         await TryExecuteAsync(async () => Ok(await _eventLogic.GetEventTypesAsync()));
 
-    [HttpGet("{id}")]
+    [HttpGet("Type/{id}")]
     public async Task<IActionResult> GetEventTypeAsync(int id) =>
         await TryExecuteAsync(async () => Ok(await _eventLogic.GetEventTypeAsync(id)));
 
-    [HttpPost]
+    [HttpPost("Type")]
     public async Task<IActionResult> CreateEventTypeAsync([FromBody] EventType eventType) =>
         await TryExecuteAsync(async () => Ok(await _eventLogic.CreateEventTypeAsync(eventType)));
 
-    [HttpPut]
+    [HttpPut("Type")]
     public async Task<IActionResult> UpdateEventTypeAsync([FromBody] EventType eventType) =>
         await TryExecuteAsync(async () => Ok(await _eventLogic.UpdateEventTypeAsync(eventType)));
 
-    [HttpDelete("{id}")]
+    [HttpDelete("Type/{id}")]
     public async Task<IActionResult> DeleteEventTypeAsync(int id) =>
         await TryExecuteAsync(async () => 
         {
