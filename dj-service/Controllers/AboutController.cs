@@ -4,12 +4,9 @@ namespace dj_service;
 
 [Controller]
 [Route("api/[controller]")]
-public class AboutController : ControllerBaseHelper<AboutController>
+public class AboutController(IAboutLogic aboutLogic, ILogger<AboutController> logger) : ControllerBaseHelper<AboutController>(logger)
 {
-    private readonly IAboutLogic aboutLogic;
-
-    public AboutController(IAboutLogic aboutLogic, ILogger<AboutController> logger) : base(logger) =>
-        this.aboutLogic = aboutLogic;
+    private readonly IAboutLogic aboutLogic = aboutLogic;
 
     [HttpGet]
     public async Task<IActionResult> GetAboutAsync() =>

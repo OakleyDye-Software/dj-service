@@ -4,12 +4,10 @@ namespace dj_service;
 
 [Controller]
 [Route("api/[controller]")]
-public class EventController : ControllerBaseHelper<EventController>
+public class EventController(IEventLogic eventLogic, ILogger<EventController> logger) : ControllerBaseHelper<EventController>(logger)
 {
-    private readonly IEventLogic _eventLogic;
+    private readonly IEventLogic _eventLogic = eventLogic;
 
-    public EventController(IEventLogic eventLogic, ILogger<EventController> logger) : base(logger) => _eventLogic = eventLogic;
-    
     [HttpGet]
     public async Task<IActionResult> GetEventTypesAsync() =>
         await TryExecuteAsync(async () => Ok(await _eventLogic.GetEventTypesAsync()));

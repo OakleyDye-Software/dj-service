@@ -4,11 +4,9 @@ namespace dj_service;
 
 [Controller]
 [Route("api/[controller]")]
-public class CounterController : ControllerBaseHelper<CounterController>
+public class CounterController(ICounterLogic counterLogic, ILogger<CounterController> logger) : ControllerBaseHelper<CounterController>(logger)
 {
-    private readonly ICounterLogic _counterLogic;
-
-    public CounterController(ICounterLogic counterLogic, ILogger<CounterController> logger) : base(logger) => _counterLogic = counterLogic;
+    private readonly ICounterLogic _counterLogic = counterLogic;
 
     [HttpGet]
     public async Task<IEnumerable<Counter>> GetCountersAsync() => await _counterLogic.GetCountersAsync();

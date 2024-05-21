@@ -4,12 +4,9 @@ namespace dj_service;
 
 [Controller]
 [Route("api/[controller]")]
-public class ServiceController : ControllerBaseHelper<ServiceController>
+public class ServiceController(IServiceLogic serviceLogic, ILogger<ServiceController> logger) : ControllerBaseHelper<ServiceController>(logger)
 {
-    private readonly IServiceLogic serviceLogic;
-
-    public ServiceController(IServiceLogic serviceLogic, ILogger<ServiceController> logger) : base(logger) =>
-        this.serviceLogic = serviceLogic;
+    private readonly IServiceLogic serviceLogic = serviceLogic;
 
     [HttpGet]
     public async Task<IActionResult> GetServiceSummariesAsync() =>
