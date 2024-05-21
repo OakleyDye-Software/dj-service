@@ -30,6 +30,8 @@ builder.Services.AddTransient<IAboutAccess, AboutAccess>();
 builder.Services.AddTransient<IAboutLogic, AboutLogic>();
 builder.Services.AddTransient<ICounterAccess, CounterAccess>();
 builder.Services.AddTransient<ICounterLogic, CounterLogic>();
+builder.Services.AddTransient<IEventAccess, EventAccess>();
+builder.Services.AddTransient<IEventLogic, EventLogic>();
 
 var app = builder.Build();
 app.MapControllers();
