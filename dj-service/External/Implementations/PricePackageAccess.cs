@@ -13,9 +13,9 @@ public class PricePackageAccess(IDbAccess dbAccess) : IPricePackageAccess
             var id = await _dbAccess.GetConnection().QuerySingleAsync<int>(
                 sql: @"
                     INSERT INTO app.price_package (package_name, package_description, package_price)
-                    VALUES (@Name, @Description, @Price)
+                    VALUES (@PackageName, @PackageDescription, @PackagePrice)
                     RETURNING id;",
-                param: pricePackage
+                param: new { PackageName = pricePackage.Name, PackageDescription = pricePackage.Description, PackagePrice = pricePackage.Price }
             );
 
             return await GetPricePackageAsync(id);
@@ -26,7 +26,7 @@ public class PricePackageAccess(IDbAccess dbAccess) : IPricePackageAccess
         {
             var id = await _dbAccess.GetConnection().QuerySingleAsync<int>(
                 sql: @"
-                    INSERT INTO app.price_package_feature (price_package_id, feature_name, feature_description)
+                    INSERT INTO app.price_package_feature (package_id, feature_name, feature_description)
                     VALUES (@PricePackageId, @Name, @Description)
                     RETURNING id;",
                 param: new { PricePackageId = pricePackageId, pricePackageFeature.Name, pricePackageFeature.Description }
@@ -101,7 +101,7 @@ public class PricePackageAccess(IDbAccess dbAccess) : IPricePackageAccess
                         feature_name AS Name,
                         feature_description AS Description
                     FROM app.price_package_feature
-                    WHERE price_package_id = @PricePackageId;",
+                    WHERE package_id = @PricePackageId;",
                 param: new { PricePackageId = pricePackageId }
             ));
 

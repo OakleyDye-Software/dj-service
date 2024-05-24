@@ -18,7 +18,11 @@ public class PricePackageController(IPricePackageLogic logic, ILogger<PricePacka
 
     [HttpPost]
     public async Task<IActionResult> CreatePricePackageAsync([FromBody] PricePackage pricePackage) =>
-        await TryExecuteAsync(async () => Ok(await _logic.CreatePricePackageAsync(pricePackage)));
+        await TryExecuteAsync(async () => 
+        {
+            if (!ModelState.IsValid) { var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage); return BadRequest(errors); }
+            return Ok(await _logic.CreatePricePackageAsync(pricePackage));
+        });
 
     [HttpPut]
     public async Task<IActionResult> UpdatePricePackageAsync([FromBody] PricePackage pricePackage) =>
