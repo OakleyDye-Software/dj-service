@@ -34,6 +34,8 @@ builder.Services.AddTransient<IEventAccess, EventAccess>();
 builder.Services.AddTransient<IEventLogic, EventLogic>();
 builder.Services.AddTransient<IPricePackageAccess, PricePackageAccess>();
 builder.Services.AddTransient<IPricePackageLogic, PricePackageLogic>();
+builder.Services.AddTransient<IFAQAccess, FAQAccess>();
+builder.Services.AddTransient<IFAQLogic, FAQLogic>();
 
 var app = builder.Build();
 app.MapControllers();
