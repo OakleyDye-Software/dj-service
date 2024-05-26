@@ -5,7 +5,7 @@ namespace dj_service;
 
 public class EmailAccess(IConfiguration config) : IEmailAccess
 {
-    private readonly string apiKey = config.GetValue<string>("SendGrid_Api_Key");
+    private readonly string apiKey = Environment.GetEnvironmentVariable("SendGrid_Api_Key") ?? config.GetValue<string>("SendGrid_Api_Key");
 
     public async Task<Response> SendEmailAsync(string toAddress, string fullName, string subject, string plainTextContent, string htmlContent, string replyTo = "", string replyToName = "", string cc = "", string ccName = "")
     {
