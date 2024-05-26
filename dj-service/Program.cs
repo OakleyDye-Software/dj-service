@@ -16,7 +16,7 @@ builder.Services.AddCors(options =>
 
     options.AddPolicy("ProdCorsPolicy", builder => builder
         .SetIsOriginAllowedToAllowWildcardSubdomains()
-        .WithOrigins("cdentertainment.azurewebsites.net", "*.cdentertainment.azurewebsites.net")
+        .WithOrigins("cdentertainment.co", "*.cdentertainment.co")
         .AllowAnyHeader()
         .AllowAnyMethod());
 });
@@ -43,7 +43,7 @@ builder.Services.AddTransient<ISubmissionLogic, SubmissionLogic>();
 var app = builder.Build();
 app.MapControllers();
 
-if (app.Environment.IsDevelopment())
+if (app.Environment.IsProduction())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
