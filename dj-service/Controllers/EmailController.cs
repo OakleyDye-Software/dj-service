@@ -8,7 +8,7 @@ namespace dj_service;
 [Route("api/[controller]")]
 public class EmailController(IConfiguration config) : ControllerBase
 {
-    private readonly string apiKey = config.GetValue<string>("SendGrid_Api_Key");
+    private readonly string apiKey = config.GetValue<string>("SendGrid_Api_Key"); // error is ok here
     [HttpGet]
     public async Task<IActionResult> SendTestEmail()
     {
