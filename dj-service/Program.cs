@@ -36,6 +36,9 @@ builder.Services.AddTransient<IPricePackageAccess, PricePackageAccess>();
 builder.Services.AddTransient<IPricePackageLogic, PricePackageLogic>();
 builder.Services.AddTransient<IFAQAccess, FAQAccess>();
 builder.Services.AddTransient<IFAQLogic, FAQLogic>();
+builder.Services.AddTransient<IEmailAccess, EmailAccess>();
+builder.Services.AddTransient<ISubmissionAccess, SubmissionAccess>();
+builder.Services.AddTransient<ISubmissionLogic, SubmissionLogic>();
 
 var app = builder.Build();
 app.MapControllers();
