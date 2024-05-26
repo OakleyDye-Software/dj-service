@@ -25,7 +25,7 @@ public class SubmissionLogic(ISubmissionAccess submissionAccess, IEmailAccess em
         var emailSubject = "Thank you for contacting CD Entertainment!";
         var plainTextContent = "Thank you for contacting CD Entertainment! We will get back to you as soon as possible.";
         var htmlContent = "<p>Thank you for contacting CD Entertainment! We will get back to you as soon as possible.</p>";
-        return await _emailAccess.SendEmailAsync(submission.Email, submission.FullName, emailSubject, plainTextContent, htmlContent, "support@cdentertainment.co", "CD Entertainment", "oakley@cdentertainment.co", "Oakley Dye");
+        return await _emailAccess.SendEmailAsync(submission.Email, submission.FullName, emailSubject, plainTextContent, htmlContent, "dj@oakleydye.com", "CD Entertainment", "dj@oakleydye.com", "CD Entertainment");
     }
 
     private async Task<Response> SendAdminEmail(ContactFormSubmission submission)
@@ -33,6 +33,6 @@ public class SubmissionLogic(ISubmissionAccess submissionAccess, IEmailAccess em
         var emailSubject = "New Contact Form Submission";
         var plainTextContent = $"Name: {submission.FullName}\nEmail: {submission.Email}\nPhone: {submission.PhoneNumber}\nMessage: {submission.EventDescription}";
         var htmlContent = $"<p>Name: {submission.FullName}</p><p>Email: {submission.Email}</p><p>Phone: {submission.PhoneNumber}</p><p>Message: {submission.EventDescription}</p>";
-        return await _emailAccess.SendEmailAsync("oakley@cdentertainment.co", "Oakley Dye", emailSubject, plainTextContent, htmlContent);
+        return await _emailAccess.SendEmailAsync("dj@oakleydye.com", "Oakley Dye", emailSubject, plainTextContent, htmlContent);
     }
 }
