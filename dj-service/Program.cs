@@ -43,7 +43,7 @@ builder.Services.AddTransient<ISubmissionLogic, SubmissionLogic>();
 var app = builder.Build();
 app.MapControllers();
 
-if (app.Environment.IsProduction())
+if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
