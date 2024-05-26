@@ -16,7 +16,7 @@ builder.Services.AddCors(options =>
 
     options.AddPolicy("ProdCorsPolicy", builder => builder
         .SetIsOriginAllowedToAllowWildcardSubdomains()
-        .WithOrigins("cdentertainment.co", "*.cdentertainment.co", "secure-pandsy-3wy789swgtdj4om8ih03d5ok.herokudns.com", "*.secure-pandsy-3wy789swgtdj4om8ih03d5ok.herokudns.com")
+        .WithOrigins("https://cdentertainment.co", "https://*.cdentertainment.co")
         .AllowAnyHeader()
         .AllowAnyMethod());
 });
