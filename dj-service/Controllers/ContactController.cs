@@ -2,6 +2,8 @@
 
 namespace dj_service;
 
+[Controller]
+[Route("api/[controller]")]
 public class ContactController(ISubmissionLogic submissionLogic, ILogger<ContactController> logger) : ControllerBaseHelper<ContactController>(logger)
 {
     private readonly ISubmissionLogic _submissionLogic = submissionLogic;
