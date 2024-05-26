@@ -1,1 +1,1 @@
-web: dotnet dj-service.dll
+web: dotnet /bin/Release/net8.0/dj-service.dll
