@@ -16,7 +16,7 @@ builder.Services.AddCors(options =>
 
     options.AddPolicy("ProdCorsPolicy", builder => builder
         .SetIsOriginAllowedToAllowWildcardSubdomains()
-        .WithOrigins("https://cdentertainment.co", "https://*.cdentertainment.co")
+        .WithOrigins("https://cdentertainment.co", "https://*.cdentertainment.co", "cdentertainment.co", "*.cdentertainment.co")
         .AllowAnyHeader()
         .AllowAnyMethod());
 });
