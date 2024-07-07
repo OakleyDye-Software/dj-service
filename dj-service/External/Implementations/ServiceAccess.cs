@@ -16,7 +16,8 @@ public class ServiceAccess(IDbAccess dbAccess) : IServiceAccess
                         service_name AS Name,
                         service_description AS Description,
                         service_image_path AS ImageUrl,
-                        page_id AS PageId
+                        page_id AS PageId,
+                        url_slug AS UrlSlug
                     FROM
                         app.service_summary;"
             ));
@@ -29,13 +30,15 @@ public class ServiceAccess(IDbAccess dbAccess) : IServiceAccess
                         service_name,
                         service_description,
                         service_image_path,
-                        page_id
+                        page_id,
+                        url_slug
                     )
                     VALUES (
                         @Name,
                         @Description,
                         @ImageUrl,
-                        @PageId
+                        @PageId,
+                        @UrlSlug
                     )
                     RETURNING id;",
                 param: serviceSummary

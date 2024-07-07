@@ -14,4 +14,6 @@ public class ServiceSummary
     public string ImageUrl { get; set; } = string.Empty;
     [Column("page_id")]
     public int PageId { get; set; }
+    [Column("url_slug")]
+    public string UrlSlug { get; set; } = string.Empty;
 }
