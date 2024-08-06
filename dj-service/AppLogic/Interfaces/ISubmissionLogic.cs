@@ -2,5 +2,5 @@
 
 public interface ISubmissionLogic
 {
-    Task<bool> CreateContactFormSubmissionAsync(ContactFormSubmission submission);
+    Task<bool> CreateContactFormSubmissionAsync(ContactFormSubmission submission, ClientInfo client);
 }

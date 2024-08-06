@@ -5,6 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddControllers();
+var allowedDomains = builder.Configuration.GetSection("AllowedDomains").Get<List<string>>();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("DevCorsPolicy", builder => builder
@@ -16,7 +17,7 @@ builder.Services.AddCors(options =>
 
     options.AddPolicy("ProdCorsPolicy", builder => builder
         .SetIsOriginAllowedToAllowWildcardSubdomains()
-        .WithOrigins("https://cdentertainment.co", "https://*.cdentertainment.co", "cdentertainment.co", "*.cdentertainment.co")
+        .WithOrigins(allowedDomains.ToArray())
         .AllowAnyHeader()
         .AllowAnyMethod());
 });
@@ -39,6 +40,8 @@ builder.Services.AddTransient<IFAQLogic, FAQLogic>();
 builder.Services.AddTransient<IEmailAccess, EmailAccess>();
 builder.Services.AddTransient<ISubmissionAccess, SubmissionAccess>();
 builder.Services.AddTransient<ISubmissionLogic, SubmissionLogic>();
+
+builder.Services.Configure<Dictionary<string, ClientInfo>>(builder.Configuration.GetSection("ClientInfo"));
 
 var app = builder.Build();
 app.MapControllers();

@@ -7,10 +7,10 @@ public class EmailAccess(IConfiguration config) : IEmailAccess
 {
     private readonly string apiKey = Environment.GetEnvironmentVariable("SendGrid_Api_Key") ?? config.GetValue<string>("SendGrid_Api_Key");
 
-    public async Task<Response> SendEmailAsync(string toAddress, string fullName, string subject, string plainTextContent, string htmlContent, string replyTo = "", string replyToName = "", string cc = "", string ccName = "")
+    public async Task<Response> SendEmailAsync(ClientInfo clientInfo, string toAddress, string fullName, string subject, string plainTextContent, string htmlContent, string replyTo = "", string replyToName = "", string cc = "", string ccName = "")
     {
         var client = new SendGridClient(apiKey);
-        var from = new EmailAddress("automailer@cdentertainment.co", "CD Entertainment");
+        var from = new EmailAddress(clientInfo.FromEmail, clientInfo.BusinessName);
         var to = new EmailAddress(toAddress, fullName);
         var message = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
         if (!string.IsNullOrEmpty(replyTo))
