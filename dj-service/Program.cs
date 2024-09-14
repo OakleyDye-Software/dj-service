@@ -40,6 +40,10 @@ builder.Services.AddTransient<IFAQLogic, FAQLogic>();
 builder.Services.AddTransient<IEmailAccess, EmailAccess>();
 builder.Services.AddTransient<ISubmissionAccess, SubmissionAccess>();
 builder.Services.AddTransient<ISubmissionLogic, SubmissionLogic>();
+builder.Services.AddTransient<ISearchAccess, SearchAccess>();
+builder.Services.AddTransient<ISearchLogic, SearchLogic>();
+builder.Services.AddTransient<ISongRequestAccess, SongRequestAccess>();
+builder.Services.AddTransient<ISongRequestLogic, SongRequestLogic>();
 
 builder.Services.Configure<Dictionary<string, ClientInfo>>(builder.Configuration.GetSection("ClientInfo"));
 
