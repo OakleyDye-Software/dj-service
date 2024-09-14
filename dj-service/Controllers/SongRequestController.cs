@@ -24,4 +24,16 @@ public class SongRequestController(ISongRequestLogic songRequestLogic, ILogger<S
     [HttpDelete]
     public async Task<IActionResult> ArchiveAllSongRequestsAsync() =>
         await TryExecuteAsync(async () => { await songRequestLogic.ArchiveAllSongRequestsAsync(); return Ok(); });
+
+    [HttpDelete]
+    public async Task<IActionResult> ArchiveSongRequestAsync([FromBody] List<int> ids) =>
+        await TryExecuteAsync(async () => { await songRequestLogic.ArchiveSongRequestsAsync(ids); return Ok(); });
+
+    [HttpGet("setting")]
+    public async Task<IActionResult> GetSongRequestSettingAsync() =>
+        await TryExecuteAsync(async () => Ok(await songRequestLogic.GetSongRequestSettingAsync()));
+
+    [HttpPut("setting")]
+    public async Task<IActionResult> ToggleSongRequestSettingAsync() =>
+        await TryExecuteAsync(async () => Ok(await songRequestLogic.ToggleSongRequestSettingAsync()));
 }

@@ -50,4 +50,36 @@ public class SongRequestAccess(IDbAccess dbAccess) : ISongRequestAccess
                     UPDATE app.song_request
                     SET
                         is_archived = true;"));
+
+    public async Task ArchiveSongRequestAsync(int id) =>
+        await dbAccess.GetAccessPolicy().Execute(async () =>
+            await dbAccess.GetConnection().ExecuteAsync(
+                sql: @"
+                    UPDATE app.song_request
+                    SET
+                        is_archived = true
+                    WHERE
+                        id = @Id;",
+                param: new { Id = id }));
+
+    public async Task<bool> GetSongRequestSettingAsync() =>
+        await dbAccess.GetAccessPolicy().Execute(async () =>
+            await dbAccess.GetConnection().QueryFirstAsync<bool>(
+                sql: @"
+                    SELECT
+                        setting_value
+                    FROM app.settings
+                    WHERE
+                        setting_name = 'accepting_requests';"));
+
+    public async Task<bool> ToggleSongRequestSettingAsync() =>
+        await dbAccess.GetAccessPolicy().Execute(async () =>
+            await dbAccess.GetConnection().QueryFirstAsync<bool>(
+                sql: @"
+                    UPDATE app.settings
+                    SET
+                        setting_value = NOT setting_value
+                    WHERE
+                        setting_name = 'accepting_requests'
+                    RETURNING setting_value;"));
 }
